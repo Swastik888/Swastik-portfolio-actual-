@@ -121,16 +121,14 @@ const projects = [
   },
 ];
 
-// Real, file-backed certification
 const featuredCertification = {
   title: "Full Stack Development with AI",
   issuer: "Internshala Trainings",
   description:
     "Completed a rigorous six-month placement course covering HTML, CSS, JavaScript, Git & GitHub, Data Structures & Algorithms, React, Node.js, Express.js and MongoDB.",
-  file: "/certifications/mern-internshala.pdf",
+  file: `${import.meta.env.BASE_URL}mern-internshala.pdf`,
 };
 
-// Additional static certification badges (no certificate file attached yet)
 const additionalCertifications = [
   { name: "Java", icon: Terminal },
   { name: "TypeScript", icon: Code2 },
@@ -180,8 +178,11 @@ function Section({ id, eyebrow, title, children }) {
 
 function App() {
   const [open, setOpen] = useState(false);
-  // Default to the real profile photo, but still allow overriding it
-  const [profileImage, setProfileImage] = useState("/profile-photo.jpg");
+
+  // GitHub Pages compatible profile image path
+  const [profileImage, setProfileImage] = useState(
+    `${import.meta.env.BASE_URL}profile-photo.jpg`
+  );
 
   const fileInputRef = useRef(null);
 
@@ -209,15 +210,11 @@ function App() {
 
   return (
     <div className="min-h-screen overflow-hidden bg-[#050816] text-slate-100">
-
       {/* Background */}
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute left-[-15%] top-[-10%] h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-[140px]" />
-
         <div className="absolute right-[-15%] top-[25%] h-[500px] w-[500px] rounded-full bg-blue-600/10 blur-[140px]" />
-
         <div className="absolute bottom-[-15%] left-[30%] h-[500px] w-[500px] rounded-full bg-indigo-600/10 blur-[140px]" />
-
         <div className="grid-bg absolute inset-0 opacity-40" />
       </div>
 
@@ -225,9 +222,7 @@ function App() {
       <header className="fixed inset-x-0 top-0 z-50">
         <div className="mx-auto mt-4 max-w-7xl px-4 md:px-8">
           <nav className="rounded-2xl border border-white/10 bg-[#07101f]/80 px-4 py-3 shadow-2xl shadow-black/30 backdrop-blur-xl">
-
             <div className="flex items-center justify-between">
-
               <button
                 onClick={() => go("home")}
                 className="flex items-center gap-3"
@@ -288,20 +283,17 @@ function App() {
       </header>
 
       <main className="relative z-10">
-
         {/* HERO */}
         <section
           id="home"
           className="relative mx-auto flex min-h-screen max-w-7xl items-center px-5 pb-16 pt-32 md:px-8"
         >
           <div className="grid w-full items-center gap-14 lg:grid-cols-[1.3fr_.7fr]">
-
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75 }}
             >
-
               <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-3 py-1.5 text-xs text-emerald-300">
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
                 Available for opportunities
@@ -326,7 +318,6 @@ function App() {
               </p>
 
               <div className="mt-9 flex flex-wrap gap-3">
-
                 <a
                   href="#projects"
                   className="group inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:-translate-y-0.5 hover:bg-cyan-300"
@@ -345,7 +336,6 @@ function App() {
                   <Mail size={17} />
                   Contact me
                 </a>
-
               </div>
 
               <div className="mt-10 flex flex-wrap items-center gap-5 text-sm text-slate-500">
@@ -356,11 +346,8 @@ function App() {
 
                 <span className="h-1 w-1 rounded-full bg-slate-700" />
 
-                <span>
-                  React • Node • MongoDB • Next.js
-                </span>
+                <span>React • Node • MongoDB • Next.js</span>
               </div>
-
             </motion.div>
 
             {/* PROFILE IMAGE */}
@@ -371,13 +358,10 @@ function App() {
               className="flex justify-center lg:justify-end"
             >
               <div className="relative">
-
                 <div className="absolute -inset-5 rounded-[2.5rem] bg-gradient-to-r from-cyan-500/20 via-blue-500/10 to-indigo-500/20 blur-2xl" />
 
                 <div className="relative w-72 rounded-[2rem] border border-white/10 bg-white/[0.04] p-3 shadow-2xl backdrop-blur-xl sm:w-80">
-
                   <div className="aspect-[4/5] overflow-hidden rounded-[1.5rem] border border-white/10 bg-gradient-to-br from-slate-900 to-slate-800">
-
                     {profileImage ? (
                       <img
                         src={profileImage}
@@ -386,7 +370,6 @@ function App() {
                       />
                     ) : (
                       <div className="flex h-full flex-col items-center justify-center px-6 text-center">
-
                         <div className="mb-5 grid h-20 w-20 place-items-center rounded-full border border-cyan-400/20 bg-cyan-400/10">
                           <Upload
                             className="text-cyan-400"
@@ -404,9 +387,7 @@ function App() {
                         </p>
 
                         <button
-                          onClick={() =>
-                            fileInputRef.current?.click()
-                          }
+                          onClick={() => fileInputRef.current?.click()}
                           className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
                         >
                           <Upload size={15} />
@@ -420,18 +401,14 @@ function App() {
                           onChange={handleImageUpload}
                           className="hidden"
                         />
-
                       </div>
                     )}
-
                   </div>
 
                   {profileImage && (
                     <>
                       <button
-                        onClick={() =>
-                          fileInputRef.current?.click()
-                        }
+                        onClick={() => fileInputRef.current?.click()}
                         className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 py-2.5 text-xs text-slate-300 transition hover:bg-white/10"
                       >
                         <Upload size={14} />
@@ -449,7 +426,6 @@ function App() {
                   )}
 
                   <div className="px-2 pb-1 pt-4">
-
                     <p className="text-xs uppercase tracking-[0.2em] text-cyan-400">
                       Software Developer
                     </p>
@@ -457,13 +433,10 @@ function App() {
                     <p className="mt-2 text-lg font-semibold">
                       Swastik Dutta
                     </p>
-
                   </div>
-
                 </div>
               </div>
             </motion.div>
-
           </div>
 
           <div className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-slate-600 md:flex">
@@ -471,12 +444,8 @@ function App() {
               Scroll
             </span>
 
-            <ChevronDown
-              size={16}
-              className="animate-bounce"
-            />
+            <ChevronDown size={16} className="animate-bounce" />
           </div>
-
         </section>
 
         {/* ABOUT */}
@@ -485,11 +454,8 @@ function App() {
           eyebrow="01 — About"
           title="Developer mindset, not just a technology list."
         >
-
           <div className="mt-10 grid gap-5 md:grid-cols-[1.4fr_.8fr]">
-
             <div className="rounded-3xl border border-white/10 bg-white/[0.035] p-7 backdrop-blur-xl md:p-9">
-
               <p className="text-lg leading-8 text-slate-300">
                 I enjoy turning ideas into useful products — from responsive
                 React interfaces to authenticated backend systems and
@@ -507,19 +473,12 @@ function App() {
                 DSA, system design and software engineering fundamentals while
                 building practical projects.
               </p>
-
             </div>
 
             <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-cyan-500/10 to-blue-500/5 p-7 backdrop-blur-xl">
+              <Trophy className="mb-5 text-cyan-400" size={28} />
 
-              <Trophy
-                className="mb-5 text-cyan-400"
-                size={28}
-              />
-
-              <p className="text-sm text-slate-500">
-                Achievement
-              </p>
+              <p className="text-sm text-slate-500">Achievement</p>
 
               <h3 className="mt-2 text-xl font-semibold">
                 Coding Competition Runner-up
@@ -529,9 +488,7 @@ function App() {
                 Demonstrated problem solving, logical thinking and
                 collaboration under time constraints.
               </p>
-
             </div>
-
           </div>
         </Section>
 
@@ -541,45 +498,26 @@ function App() {
           eyebrow="02 — Skills"
           title="Technologies I use to build modern applications."
         >
-
           <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-
             {skills.map(({ name, icon: Icon, level }, i) => (
               <motion.div
                 key={name}
-                initial={{
-                  opacity: 0,
-                  y: 18,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  delay: i * 0.035,
-                }}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.035 }}
                 className="group rounded-2xl border border-white/10 bg-white/[0.025] p-5 transition duration-300 hover:-translate-y-1 hover:border-cyan-400/30 hover:bg-cyan-400/[0.04]"
               >
-
                 <Icon
                   size={22}
                   className="text-cyan-400 transition group-hover:scale-110"
                 />
 
-                <h3 className="mt-7 font-medium text-white">
-                  {name}
-                </h3>
+                <h3 className="mt-7 font-medium text-white">{name}</h3>
 
-                <p className="mt-1 text-xs text-slate-600">
-                  {level}
-                </p>
-
+                <p className="mt-1 text-xs text-slate-600">{level}</p>
               </motion.div>
             ))}
-
           </div>
         </Section>
 
@@ -589,37 +527,22 @@ function App() {
           eyebrow="03 — Selected Work"
           title="Projects that demonstrate how I think and build."
         >
-
           <div className="mt-10 space-y-4">
-
             {projects.map((project, i) => (
               <motion.article
                 key={project.title}
-                initial={{
-                  opacity: 0,
-                  y: 20,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  delay: i * 0.06,
-                }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06 }}
                 className="group rounded-3xl border border-white/10 bg-white/[0.025] p-6 transition duration-300 hover:border-cyan-400/20 hover:bg-white/[0.04] md:p-8"
               >
-
                 <div className="grid gap-7 md:grid-cols-[100px_1fr_auto] md:items-start">
-
                   <span className="font-mono text-sm text-slate-700">
                     {project.number}
                   </span>
 
                   <div>
-
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
                       {project.type}
                     </p>
@@ -633,7 +556,6 @@ function App() {
                     </p>
 
                     <div className="mt-5 flex flex-wrap gap-2">
-
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
@@ -642,9 +564,7 @@ function App() {
                           {tag}
                         </span>
                       ))}
-
                     </div>
-
                   </div>
 
                   <a
@@ -652,16 +572,13 @@ function App() {
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 text-slate-400 transition hover:border-cyan-400/30 hover:bg-cyan-400/10 hover:text-cyan-300"
-                    aria-label={`Open ${project.title} `}
+                    aria-label={`Open ${project.title}`}
                   >
                     <ExternalLink size={17} />
                   </a>
-
                 </div>
-
               </motion.article>
             ))}
-
           </div>
         </Section>
 
@@ -671,37 +588,21 @@ function App() {
           eyebrow="04 — Certification"
           title="Professional learning and training."
         >
-
           <div className="mt-10 max-w-2xl">
-
             <motion.div
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{
-                once: true,
-              }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               className="group rounded-3xl border border-white/10 bg-white/[0.025] p-7 transition duration-300 hover:border-cyan-400/30 hover:bg-cyan-400/[0.03] md:p-9"
             >
-
               <div className="flex items-start justify-between gap-5">
-
                 <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl border border-cyan-400/20 bg-cyan-400/10">
-                  <Award
-                    size={28}
-                    className="text-cyan-400"
-                  />
+                  <Award size={28} className="text-cyan-400" />
                 </div>
 
                 <span className="rounded-full border border-emerald-400/20 bg-emerald-400/5 px-3 py-1 text-xs text-emerald-300">
                   Completed
                 </span>
-
               </div>
 
               <p className="mt-7 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
@@ -729,10 +630,8 @@ function App() {
                 View Certificate
                 <ExternalLink size={16} />
               </a>
-
             </motion.div>
 
-            {/* Additional static certifications (Java, TypeScript, Python) */}
             <div className="mt-5 grid gap-4 sm:grid-cols-3">
               {additionalCertifications.map(({ name, icon: Icon }, i) => (
                 <motion.div
@@ -747,9 +646,7 @@ function App() {
                     <Icon size={20} className="text-cyan-400" />
                   </div>
 
-                  <h4 className="mt-4 font-medium text-white">
-                    {name}
-                  </h4>
+                  <h4 className="mt-4 font-medium text-white">{name}</h4>
 
                   <p className="mt-1 text-xs text-slate-600">
                     Certification
@@ -757,20 +654,15 @@ function App() {
                 </motion.div>
               ))}
             </div>
-
           </div>
-
         </Section>
 
         {/* CURRENTLY BUILDING */}
         <section className="mx-auto max-w-7xl px-5 py-10 md:px-8">
-
           <div className="relative overflow-hidden rounded-3xl border border-cyan-400/10 bg-gradient-to-br from-cyan-500/[0.08] via-blue-500/[0.04] to-transparent p-8 md:p-12">
-
             <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-cyan-500/10 blur-3xl" />
 
             <div className="relative">
-
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-400">
                 Currently Building
               </p>
@@ -785,7 +677,6 @@ function App() {
               </p>
 
               <div className="mt-7 flex flex-wrap gap-3">
-
                 {[
                   "Full Stack",
                   "DSA",
@@ -800,9 +691,7 @@ function App() {
                     {item}
                   </span>
                 ))}
-
               </div>
-
             </div>
           </div>
         </section>
@@ -813,26 +702,19 @@ function App() {
           eyebrow="05 — Contact"
           title="Let's build something useful."
         >
-
           <div className="mt-10 grid gap-5 md:grid-cols-[1fr_.8fr]">
-
             <div className="rounded-3xl border border-white/10 bg-white/[0.025] p-7 backdrop-blur-xl md:p-9">
-
               <p className="leading-7 text-slate-500">
                 I'm open to entry-level software development, MERN Stack,
                 React and full-stack opportunities.
               </p>
 
               <div className="mt-7 space-y-3">
-
                 <a
                   href="mailto:dswastik104@gmail.com"
                   className="flex items-center gap-3 rounded-xl border border-white/10 p-4 text-sm text-slate-300 transition hover:border-cyan-400/20 hover:bg-cyan-400/5"
                 >
-                  <Mail
-                    size={18}
-                    className="text-cyan-400"
-                  />
+                  <Mail size={18} className="text-cyan-400" />
                   dswastik104@gmail.com
                 </a>
 
@@ -840,10 +722,7 @@ function App() {
                   href="tel:+919073040706"
                   className="flex items-center gap-3 rounded-xl border border-white/10 p-4 text-sm text-slate-300 transition hover:border-cyan-400/20 hover:bg-cyan-400/5"
                 >
-                  <Phone
-                    size={18}
-                    className="text-cyan-400"
-                  />
+                  <Phone size={18} className="text-cyan-400" />
                   +91 9073040706
                 </a>
 
@@ -853,10 +732,7 @@ function App() {
                   rel="noreferrer"
                   className="flex items-center gap-3 rounded-xl border border-white/10 p-4 text-sm text-slate-300 transition hover:border-cyan-400/20 hover:bg-cyan-400/5"
                 >
-                  <Github
-                    size={18}
-                    className="text-cyan-400"
-                  />
+                  <Github size={18} className="text-cyan-400" />
                   github.com/Swastik888
                 </a>
 
@@ -866,20 +742,14 @@ function App() {
                   rel="noreferrer"
                   className="flex items-center gap-3 rounded-xl border border-white/10 p-4 text-sm text-slate-300 transition hover:border-cyan-400/20 hover:bg-cyan-400/5"
                 >
-                  <Linkedin
-                    size={18}
-                    className="text-cyan-400"
-                  />
+                  <Linkedin size={18} className="text-cyan-400" />
                   LinkedIn Profile
                 </a>
-
               </div>
             </div>
 
             <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-7 md:p-9">
-
               <div className="flex items-center gap-3">
-
                 <BriefcaseBusiness
                   className="text-cyan-400"
                   size={22}
@@ -888,74 +758,55 @@ function App() {
                 <p className="text-sm text-slate-500">
                   Quick Profile
                 </p>
-
               </div>
 
               <div className="mt-6 space-y-5">
-
                 <div>
-                  <p className="text-xs text-slate-600">
-                    Role
-                  </p>
-
+                  <p className="text-xs text-slate-600">Role</p>
                   <p className="mt-1 font-medium">
                     MERN Stack Developer
                   </p>
                 </div>
 
                 <div>
-                  <p className="text-xs text-slate-600">
-                    Education
-                  </p>
-
+                  <p className="text-xs text-slate-600">Education</p>
                   <p className="mt-1 font-medium">
                     B.Tech — Information Technology
                   </p>
                 </div>
 
                 <div>
-                  <p className="text-xs text-slate-600">
-                    Primary Focus
-                  </p>
-
+                  <p className="text-xs text-slate-600">Primary Focus</p>
                   <p className="mt-1 font-medium">
                     Full-Stack Web Development
                   </p>
                 </div>
 
                 <div>
-                  <p className="text-xs text-slate-600">
-                    Location
-                  </p>
-
+                  <p className="text-xs text-slate-600">Location</p>
                   <p className="mt-1 font-medium">
                     Kolkata, India
                   </p>
                 </div>
-
               </div>
 
+              {/* GitHub Pages compatible resume */}
               <a
-                href="/Swastik-Dutta-Resume.pdf"
-                download
+                href={`${import.meta.env.BASE_URL}Swastik-Dutta-Resume.pdf`}
+                download="Swastik-Dutta-Resume.pdf"
                 className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
               >
                 <Download size={17} />
                 Download Resume
               </a>
-
             </div>
           </div>
-
         </Section>
-
       </main>
 
       {/* FOOTER */}
       <footer className="mx-auto max-w-7xl border-t border-white/10 px-5 py-8 md:px-8">
-
         <div className="flex flex-col justify-between gap-4 text-sm text-slate-600 md:flex-row">
-
           <p>
             © {new Date().getFullYear()} Swastik Dutta. Built with React.
           </p>
@@ -963,11 +814,8 @@ function App() {
           <p>
             Designed for clarity. Engineered for the web.
           </p>
-
         </div>
-
       </footer>
-
     </div>
   );
 }
